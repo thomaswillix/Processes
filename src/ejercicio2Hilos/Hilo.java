@@ -1,33 +1,27 @@
 package ejercicio2Hilos;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Hilo extends Thread{
-    char[] buffer;
-    char[] vocales = {'a','e','i','o','u'};
-    Scanner sc =  new Scanner(System.in);
+    int cont ;
 
-
-    @Override
-    public void run() {
-        //leerArchivoVocal();
+    public void run(char l) {
+    	 try {
+             File f = new File("ejemplo.txt");
+             FileReader fr =  new FileReader(f);
+             int c = fr.read();
+             while(c != -1) {
+             	if ((char)c == l) {
+ 					cont++;
+ 					c = fr.read();
+ 				}                 
+             }
+             fr.close();
+             System.out.println("la vocsl " + l + " aparece " +cont + " veces");
+         }catch (IOException e){
+             System.err.println("Error de lectura y/o escritura");
+         } 
     }
-    /*private void leerArchivoVocal(){
-        try {
-            File f = new File(ejemplo.txt);
-            FileReader fr =  new FileReader(f);
-            while(true) {
-                fr.read(buffer);
-
-            }
-        }catch (IOException e){
-            System.err.println("Error de lectura y/o escritura");
-        } catch(FileNotFoundException e){
-            System.err.println("Archivo no encontrado");
-        }
-    }*/
 }
