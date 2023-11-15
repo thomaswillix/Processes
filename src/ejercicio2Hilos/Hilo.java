@@ -32,7 +32,7 @@ public class Hilo extends Thread {
 			int c = fr.read();
 			
 			while (c != -1) {
-				if ((char) c == l) {
+				if (Character.toLoweCase((char) c) == l) {
 					cont++;
 				}
 				c = fr.read();
