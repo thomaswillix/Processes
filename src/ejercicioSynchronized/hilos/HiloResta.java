@@ -18,7 +18,12 @@ public class HiloResta extends Thread {
 
 		try {
 			sleep((int)(Math.random()*100) + 1);
-			contador.decrementar(cant);
+			synchronized (contador) {
+				if (contador.valor()<cant) {
+					contador.wait();
+				}
+				contador.decrementar(cant);	
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

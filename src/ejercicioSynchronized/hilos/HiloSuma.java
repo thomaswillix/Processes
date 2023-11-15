@@ -19,12 +19,15 @@ public class HiloSuma extends Thread {
 		synchronized (contador) {
 
 			try {
-				sleep((int) (Math.random()*100) + 1);
-				contador.incrementar(cant);
+				sleep((int) (Math.random() * 100) + 1);
+				synchronized (contador) {
+					contador.incrementar(cant);
+					contador.notify();
+				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			//System.out.println(getName() + " contador vale " + contador.valor());
+			// System.out.println(getName() + " contador vale " + contador.valor());
 		}
 	}
 }
