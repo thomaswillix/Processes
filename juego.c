@@ -1,42 +1,33 @@
-#include "juego.h"
 
-Juego* nuevoJuegoGenerico(){
-    Juego* j= malloc(sizeof(Juego));
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-    strcpy(j->titulo, "por resolver");
-    j->horas = 0;
-    return j;
-}
-char* toStringJuego(Juego j){
-    char* cadena=malloc(30*sizeof(char));
+typedef struct{
+    char *titulo;
+    //char *titulo
+    double horas;
+} Juego;
+/* 
+Crea un juego con título 'por resolver'
+y horas de juego 0 
+*/
+Juego* nuevoJuegoGenerico();
+/*
+Devuelve una cadena con los datos del
+juego (titulo y horas de juego)
+*/
+char* toStringJuego(Juego j);
+
+Juego* nuevoJuego();
+void leerJuego(Juego *j);
+
+char* getTitulo(Juego j);
+/*
+Si  a=b devuelve 0
+    a<b devuelve -1
+    a>b devuelve 1
     
-    sprintf(cadena,"Titulo: %s horas: %lf\n"
-                ,j.titulo,j.horas);
-    
-    return cadena;
-}
-Juego* nuevoJuego(char *tit, double h){
-    Juego *j=malloc(sizeof(Juego));
-
-    strcpy(j->titulo, tit);
-    j->horas=h;
-}
-
-void leerJuego(Juego *j){
-    double horas=0;
-
-    printf("Título: ");
-    scanf("%s",j->titulo);
-    printf("Horas: ");
-    scanf("%lf",&horas);
-    j->horas = horas;
-}
-int compararJuego(Juego a, Juego b){
-    if(a.horas==b.horas)
-        return 0;
-    else
-        if(a.horas<b.horas)
-        return -1;
-    else
-        return 1;
-}
+    Se compararán por horas de juego de cada uno
+*/
+int compararJuego(Juego a, Juego b);
