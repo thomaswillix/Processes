@@ -10,34 +10,34 @@ int main (int argc, char** argv){
 
     for(i = 0;i<NUM_JUEGOS; i++)
     {
+        juegos[i] = nuevoJuego();
+        
         //leer jugador
         leerJuego(juegos[i]);
     }
     
-            //mostrar juegos desordenados
+    //mostrar juegos desordenados
     for(i = 0;i<NUM_JUEGOS; i++)
     {
         printf("%s",toStringJuego(*juegos[i]));
     }
     //ordenar el array
-    int cambios = 1;
+    int cambios = 0;
     Juego *auxiliar;
     while (cambios>0)
     {
-        cambios = 0;
-        for (i = 0; i < NUM_JUEGOS; i++)
+        for (i = 0; i < NUM_JUEGOS - 1; i++)
         {
             if (compararJuego(*juegos[i], *juegos[i+1])>0)
             {
                 //intercambiar
-                juegos[i] = juegos[i+1] ;
                 auxiliar=juegos[i];
-                juegos[i]=juegos[i+1];
+                juegos[i] = juegos[i+1] ;
                 juegos[i+1]=auxiliar;
                 cambios++;
             }   
         }   
-        printf("La cantidad de cambios para ordenar el array ha sido de: %d", cambios);
+        printf("cambios: %d\n", cambios);
     }
 
     //mostrar juegos ordenados
