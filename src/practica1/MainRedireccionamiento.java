@@ -1,11 +1,9 @@
 package practica1;
-// 16/11/23
 import java.io.File;
 import java.io.IOException;
 
 public class MainRedireccionamiento {
 	public static void main(String[] args) {
-		//ProcessBuilder pb= new ProcessBuilder("gcc juego.c juego.h main.c", " -o ", " jugar");
 		ProcessBuilder pb= new ProcessBuilder("./juego");
 		File fin = new File("entrada.txt");
 		File fout = new File("salida.txt");
