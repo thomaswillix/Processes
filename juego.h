@@ -4,22 +4,22 @@
 #include <stdio.h>
 
 typedef struct{
-    char titulo[20];
+    char *titulo;
     //char *titulo
     double horas;
 } Juego;
 /* 
-Crea una pelicula con título 'por resolver'
-y minutos 0 
+Crea un juego con título 'por resolver'
+y horas de juego 0 
 */
 Juego* nuevoJuegoGenerico();
 /*
 Devuelve una cadena con los datos del
-jugador (nombre y puntos)
+juego (titulo y horas de juego)
 */
 char* toStringJuego(Juego j);
 
-Juego* nuevoJuego(char *nombre, double horas);
+Juego* nuevoJuego();
 void leerJuego(Juego *j);
 
 char* getTitulo(Juego j);
