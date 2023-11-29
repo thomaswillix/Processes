@@ -6,11 +6,10 @@ import casino.datos.Ruleta;
 public class HiloJugador extends Thread {
 	private Cuenta pres;
 	private Ruleta ruleta;
-	
 
 	public HiloJugador(Ruleta ruleta, Cuenta pres) {
 		super();
-		this.ruleta=ruleta;
+		this.ruleta = ruleta;
 		this.pres = pres;
 	}
 
@@ -18,23 +17,32 @@ public class HiloJugador extends Thread {
 	public void run() {
 		// TODO Auto-generated method stub
 		int numero = 0;
-		for (int i = 0; i < 4; i++) {
-			pres.retirar(10);
-			ruleta.ingresar(10);
-			numero=(int)(Math.random()*36+1);
-			synchronized(ruleta) {
+		synchronized (ruleta) {
+
+			while (pres.getSaldo() > 0) {
+				System.out.println("cositas");
+
+				pres.retirar(10);
+				ruleta.ingresar(10);
+
+				numero = (int) (Math.random() * 36 + 1);
+
 				try {
 					ruleta.wait();
 				} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+					e.printStackTrace();
 				}
+
+				System.out.println("apuesto " + numero + " y gana " + ruleta.getNum());
+
+				if (numero == ruleta.getNum()) {
+					ruleta.retirar(360);
+					pres.ingresar(360);
+				}
+
+				System.out.println("Saldo del jugador 1 " + pres.getSaldo());
 			}
-			System.out.println("apuesto "+numero+" y gana "+ruleta.getNum());
-			if(numero== ruleta.getNum()){
-				
-			}
-			System.out.println(pres.getSaldo());
+			interrupt();
 		}
 	}
 }
