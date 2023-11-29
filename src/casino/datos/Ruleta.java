@@ -28,5 +28,8 @@ public class Ruleta {
 	public int getNum() {
 		return numAleatorio;
 	}
+	public int getBanca() {
+		return banca;
+	}
 	
 }
