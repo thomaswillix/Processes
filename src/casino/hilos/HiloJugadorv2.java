@@ -20,14 +20,21 @@ public class HiloJugadorv2 extends Thread {
 		int numero = 0;
 		synchronized (ruleta) {
 
-			while (pres.getSaldo() >= 0|| ruleta.getBanca()>=0) {
+			while (pres.getSaldo() > 0) {
 				System.out.println("cositas");
 
 				pres.retirar(10);
 				ruleta.ingresar(10);
 
-				numero = (int) (Math.random() * 36 + 1);
-
+				numero = (int) (Math.random() * 2);
+				boolean esPar = false;
+				
+				if(numero==0) {
+					esPar= true;
+					System.out.println("El jugador apuesta a pares");
+				}else {
+					System.out.println("El jugador apuesta a impares");
+				}
 				try {
 					ruleta.wait();
 				} catch (InterruptedException e) {
@@ -36,12 +43,12 @@ public class HiloJugadorv2 extends Thread {
 
 				System.out.println("apuesto " + numero + " y gana " + ruleta.getNum());
 
-				if (numero == ruleta.getNum()) {
-					ruleta.retirar(360);
-					pres.ingresar(360);
+				if ((ruleta.getNum()%2==0 && esPar==true) || (ruleta.getNum()%2==1 && esPar==false)) {
+					ruleta.retirar(20);
+					pres.ingresar(20);
 				}
 
-				System.out.println("Saldo del jugador 2 " + pres.getSaldo());
+				System.out.println("Saldo del jugador-----> " + pres.getSaldo());
 			}
 			interrupt();
 		}
