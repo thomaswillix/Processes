@@ -40,7 +40,7 @@ public class HiloJugador extends Thread {
 					pres.ingresar(360);
 				}
 
-				System.out.println("Saldo del jugador 1 " + pres.getSaldo());
+				System.out.println("Saldo del jugador-----> " + pres.getSaldo());
 			}
 			interrupt();
 		}
