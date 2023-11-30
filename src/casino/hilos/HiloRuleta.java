@@ -32,9 +32,9 @@ public class HiloRuleta extends Thread {
 			
 			aux =  bola.getBanca();	
 			
-			if (bola.getBanca()<=0) {
+			/*if (bola.getBanca()<=0) {
 				tienePasta = false;
-			}
+			}*/
 			System.out.println("Banca " + bola.getBanca());
 
 		}
