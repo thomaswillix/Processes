@@ -6,6 +6,7 @@ import casino.datos.Cuenta;
 import casino.datos.Ruleta;
 import casino.hilos.HiloJugador;
 import casino.hilos.HiloJugadorv2;
+import casino.hilos.HiloJugadorv3;
 import casino.hilos.HiloRuleta;
 
 public class Main {
@@ -14,8 +15,10 @@ public class Main {
 
 		Ruleta ruleta=new Ruleta(80);
 		Cuenta[] banco =new Cuenta[4];
-		HiloJugador[] partidaNumAl = new HiloJugador[10];
-		HiloJugadorv2[] partidaNumPar = new HiloJugadorv2[10];
+		HiloJugador[] partidaNumAl = new HiloJugador[4];
+		HiloJugadorv2[] partidaNumPar = new HiloJugadorv2[4];
+		HiloJugadorv3[] partidaMartingala = new HiloJugadorv3[4];
+
 		
 		System.out.println("Buenos días, bienvenido a la ruleta francesa del"
 				+ "casino\nIntroduzca de qué manera quiere jugar su partida\n"
@@ -44,6 +47,8 @@ public class Main {
 				partidaNumPar[i].start();
 				break;
 			case 3:
+				partidaMartingala[i] = new HiloJugadorv3(ruleta, banco[i]);
+				partidaMartingala[i].start();
 				break;
 			}
 		}
