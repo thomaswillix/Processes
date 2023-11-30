@@ -21,7 +21,6 @@ public class HiloJugadorv2 extends Thread {
 		synchronized (ruleta) {
 
 			while (pres.getSaldo() > 0) {
-				System.out.println("cositas");
 
 				pres.retirar(10);
 				ruleta.ingresar(10);
