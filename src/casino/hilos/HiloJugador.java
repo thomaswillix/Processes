@@ -20,7 +20,7 @@ public class HiloJugador extends Thread {
 		synchronized (ruleta) {
 
 			while (pres.getSaldo() > 0) {
-				
+
 				pres.retirar(10);
 				ruleta.ingresar(10);
 
@@ -38,8 +38,12 @@ public class HiloJugador extends Thread {
 					ruleta.retirar(360);
 					pres.ingresar(360);
 				}
-
+				
 				System.out.println("Saldo del jugador-----> " + pres.getSaldo());
+				
+				if (ruleta.getBanca()<=0) {
+					interrupt();
+				}
 			}
 			interrupt();
 		}
