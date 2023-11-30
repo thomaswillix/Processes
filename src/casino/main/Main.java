@@ -16,11 +16,6 @@ public class Main {
 		Cuenta[] banco =new Cuenta[4];
 		HiloJugador[] partidaNumAl = new HiloJugador[10];
 		HiloJugadorv2[] partidaNumPar = new HiloJugadorv2[10];
-
-		Cuenta saldo1=new Cuenta(100);
-		Cuenta saldo2=new Cuenta(10000);
-	//	Cuenta saldo3=new Cuenta(10000);
-
 		
 		System.out.println("Buenos días, bienvenido a la ruleta francesa del"
 				+ "casino\nIntroduzca de qué manera quiere jugar su partida\n"
