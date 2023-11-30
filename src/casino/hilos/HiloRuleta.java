@@ -6,9 +6,21 @@ public class HiloRuleta extends Thread {
 
 	private Ruleta bola;
 	private boolean tienePasta = true;
+	private HiloJugador[] partida1;
+	private HiloJugadorv2[] partida2;
+	private HiloJugadorv3[] partida3;
 	
-	public HiloRuleta(Ruleta b) {
+	public HiloRuleta(Ruleta b, HiloJugador[] partidaNumAleatorios) {
 		this.bola = b;
+		this.partida1=partidaNumAleatorios;
+	}
+	public HiloRuleta(Ruleta b, HiloJugadorv2[] partidaNumPares) {
+		this.bola = b;
+		this.partida2=partidaNumPares;
+	}
+	public HiloRuleta(Ruleta b, HiloJugadorv3[] partidaMartingala) {
+		this.bola = b;
+		this.partida3=partidaMartingala;
 	}
 
 	@Override
@@ -16,6 +28,11 @@ public class HiloRuleta extends Thread {
 		int aux = 0;
 		int aux1 = 0;
 		while (tienePasta || (aux == bola.getBanca() && aux1 != bola.getNum())) {
+			
+			
+			if(!estanVivos()) {
+				interrupt();
+			}
 			aux1 = bola.getNum();
 			try {
 				sleep(3000);
@@ -39,5 +56,14 @@ public class HiloRuleta extends Thread {
 		}
 		//El jugador
 		interrupt();
+	}
+	
+	public boolean estanVivos() {
+		for (HiloJugador hiloJugador : partida1) {
+			if(hiloJugador.isAlive()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
