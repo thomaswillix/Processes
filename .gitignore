@@ -1,5 +1,5 @@
-.jar
-.c
-.h
-.txt
-.iml
+*jar
+*.c
+*.h
+*.txt
+*.iml
