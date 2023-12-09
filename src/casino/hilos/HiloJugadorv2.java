@@ -28,32 +28,32 @@ public class HiloJugadorv2 extends Thread {
 				ruleta.ingresar(10);
 
 				numero = (int) (Math.random() * 2);
-				
+
 				try {
 					ruleta.wait();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				
+
 				if(numero==0) {
 					esPar= true;
 					cadena = "pares";
 				}else if (numero ==1){
 					cadena = "impares";
 				}
-				
-				if ((ruleta.getNum()%2==0 && esPar==true) || (ruleta.getNum()%2==1 && esPar==false)) {
+
+				if ((ruleta.getNum()%2==0 && esPar) || (ruleta.getNum()%2==1 && !esPar)) {
 					System.out.println("Jugador:\nHe ganado apostando a los " + cadena +
 							", el num ganador es: " + ruleta.getNum());
 					ruleta.retirar(20);
 					pres.ingresar(20);
 				}else {
-					System.out.println("Jugador:\nHe perdido apostando a los " + cadena + 
+					System.out.println("Jugador:\nHe perdido apostando a los " + cadena +
 							", el num ganador es: " + ruleta.getNum());
 				}
 				System.out.println("Dinero de la Banca: " + ruleta.getBanca());
 
-				System.out.println("Dinero del jugador " + pres.getSaldo() + 
+				System.out.println("Dinero del jugador " + pres.getSaldo() +
 						"\n------------------------------------------------");
 				if (ruleta.getBanca()<=0) {
 					System.out.println("La banca ha quebrado");
