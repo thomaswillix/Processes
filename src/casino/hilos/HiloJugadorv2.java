@@ -2,35 +2,38 @@ package casino.hilos;
 
 
 import casino.datos.Cuenta;
+import casino.datos.CuentaCasino;
 import casino.datos.Ruleta;
 
 public class HiloJugadorv2 extends Thread {
 	private Cuenta pres;
-	private Ruleta ruleta;
+	private CuentaCasino casino;
+	private Ruleta bola;
 	boolean esPar = false;
 	private String cadena;
 
-	public HiloJugadorv2(Ruleta ruleta, Cuenta pres) {
+	public HiloJugadorv2(Ruleta ruleta, CuentaCasino cc, Cuenta pres) {
 		super();
-		this.ruleta = ruleta;
+		this.bola = ruleta;
 		this.pres = pres;
+		this.casino = cc;
 	}
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		int numero = 0;
-		synchronized (ruleta) {
+		synchronized (bola) {
 
 			while (pres.getSaldo() > 0) {
 
 				pres.retirar(10);
-				ruleta.ingresar(10);
+				casino.ingresar(10);
 
 				numero = (int) (Math.random() * 2);
 
 				try {
-					ruleta.wait();
+					bola.wait();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -43,20 +46,20 @@ public class HiloJugadorv2 extends Thread {
 					cadena = "impares";
 				}
 
-				if ((ruleta.getNum()%2==0 && esPar) || (ruleta.getNum()%2==1 && !esPar)) {
+				if ((bola.getNum()%2==0 && esPar) || (bola.getNum()%2==1 && !esPar)) {
 					System.out.println("Jugador:\nHe ganado apostando a los " + cadena +
-							", el num ganador es: " + ruleta.getNum());
-					ruleta.retirar(20);
+							", el num ganador es: " + bola.getNum());
+					casino.retirar(20);
 					pres.ingresar(20);
 				}else {
 					System.out.println("Jugador:\nHe perdido apostando a los " + cadena +
-							", el num ganador es: " + ruleta.getNum());
+							", el num ganador es: " + bola.getNum());
 				}
-				System.out.println("Dinero de la Banca: " + ruleta.getBanca());
+				System.out.println("Dinero de la Banca: " + casino.getBanca());
 
 				System.out.println("Dinero del jugador " + pres.getSaldo() +
 						"\n------------------------------------------------");
-				if (ruleta.getBanca()<=0) {
+				if (casino.getBanca()<=0) {
 					System.out.println("La banca ha quebrado");
 					break;
 				}

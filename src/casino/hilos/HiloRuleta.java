@@ -1,30 +1,31 @@
 package casino.hilos;
 
+import casino.datos.CuentaCasino;
 import casino.datos.Ruleta;
 
 public class HiloRuleta extends Thread {
 
 	private Ruleta bola;
+	private CuentaCasino casino;
 	private boolean tienePasta = true;
 	private int modoJuego;
 
-	public HiloRuleta(Ruleta b, int juego) {
+	public HiloRuleta(Ruleta b, CuentaCasino cc, int juego) {
 		this.bola = b;
 		this.modoJuego = juego;
+		this.casino = cc;
 	}
 
 	@Override
 	public void run() {
 		int aux = 0;
 		int aux1 = 0;
-		while (tienePasta || (aux == bola.getBanca() && aux1 != bola.getNum())) {
+		while (tienePasta || (aux == casino.getBanca() && aux1 != bola.getNum())) {
 
 			/*if(!estanVivos(modoJuego)) {
 				interrupt();
 			}*/
 
-			aux1 = bola.getNum();
-			System.out.println("Ruleta girando...");
 			int num = 3;
 			try {
 				do{
@@ -40,17 +41,17 @@ public class HiloRuleta extends Thread {
 				bola.notifyAll();
 			}
 			
-			if (bola.getBanca()<0) {
+			if (casino.getBanca()<0) {
 				tienePasta = false;
 				break;
 			}
-			System.out.println("\nRuleta girando...\nEl número ganador es-----> "+bola.getNum());
-			
-			aux =  bola.getBanca();
+			System.out.println("\nEl número ganador es-----> "+bola.getNum());
+
+			aux =  casino.getBanca();
 		}
 		interrupt();
 	}
-	
+
 	/*public boolean estanVivos(int modoJuego) {
 		if (modoJuego == 1){
 			for (HiloJugador hiloJugador : partida1) {

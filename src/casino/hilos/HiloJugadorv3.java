@@ -1,24 +1,28 @@
 package casino.hilos;
 
 import casino.datos.Cuenta;
+import casino.datos.CuentaCasino;
 import casino.datos.Ruleta;
 
 public class HiloJugadorv3 extends Thread {
     private Cuenta presupuesto;
-    private Ruleta casino;
+    private Ruleta bola;
+    private CuentaCasino casino;
     private int i = 10;
 
-    public HiloJugadorv3(Ruleta casino, Cuenta presupuesto) {
+    public HiloJugadorv3(Ruleta casino, CuentaCasino cc, Cuenta presupuesto) {
         super();
-        this.casino = casino;
+        this.bola = casino;
         this.presupuesto = presupuesto;
+        this.casino = cc;
+        
     }
 
     @Override
     public void run() {
         // TODO Auto-generated method stub
         int numero = 0;
-        synchronized (casino) {
+        synchronized (bola) {
 
             while (presupuesto.getSaldo() > 0) {
 
@@ -29,7 +33,7 @@ public class HiloJugadorv3 extends Thread {
                 numero = (int) (Math.random() * 36 + 1);
 
                 try {
-                    casino.wait();
+                    bola.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -38,14 +42,14 @@ public class HiloJugadorv3 extends Thread {
                     i= presupuesto.getSaldo();
                 }
 
-                if (numero == casino.getNum()) {
+                if (numero == bola.getNum()) {
                     System.out.println("Jugador:\nHe ganado apostando al: " + numero);
                     casino.retirar(i*36);
                     presupuesto.ingresar(i*36);
                     i=10;
                 } else {
                     System.out.println("Jugador:\nHe perdido apostando al: " + numero +
-                            " el num ganador es: " + casino.getNum());
+                            " el num ganador es: " + bola.getNum());
                 }
                 System.out.println("Dinero de la Banca: " + casino.getBanca());
 
