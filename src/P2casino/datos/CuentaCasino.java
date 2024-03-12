@@ -1,4 +1,4 @@
-package casino.datos;
+package P2casino.datos;
 
 public class CuentaCasino {
     int banca;

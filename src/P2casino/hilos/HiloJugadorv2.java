@@ -1,9 +1,9 @@
-package casino.hilos;
+package P2casino.hilos;
 
 
-import casino.datos.Cuenta;
-import casino.datos.CuentaCasino;
-import casino.datos.Ruleta;
+import P2casino.datos.Cuenta;
+import P2casino.datos.CuentaCasino;
+import P2casino.datos.Ruleta;
 
 public class HiloJugadorv2 extends Thread {
 	private Cuenta pres;

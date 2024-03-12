@@ -1,6 +1,6 @@
-package ejercicioSynchronized.hilos;
+package P2ejercicioSynchronized.hilos;
 
-import ejercicioSynchronized.datos.Contador;
+import P2ejercicioSynchronized.datos.Contador;
 
 public class HiloResta extends Thread {
 

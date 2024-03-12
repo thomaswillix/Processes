@@ -1,4 +1,4 @@
-package ejercicioSynchronized.datos;
+package P2ejercicioSynchronized.datos;
 
 public class Contador {
 

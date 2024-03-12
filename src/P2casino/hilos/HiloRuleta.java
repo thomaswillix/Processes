@@ -1,7 +1,7 @@
-package casino.hilos;
+package P2casino.hilos;
 
-import casino.datos.CuentaCasino;
-import casino.datos.Ruleta;
+import P2casino.datos.CuentaCasino;
+import P2casino.datos.Ruleta;
 
 public class HiloRuleta extends Thread {
 

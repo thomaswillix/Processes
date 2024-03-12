@@ -1,8 +1,8 @@
-package ejercicioSynchronized.main;
+package P2ejercicioSynchronized.main;
 
-import ejercicioSynchronized.datos.Contador;
-import ejercicioSynchronized.hilos.HiloResta;
-import ejercicioSynchronized.hilos.HiloSuma;
+import P2ejercicioSynchronized.datos.Contador;
+import P2ejercicioSynchronized.hilos.HiloResta;
+import P2ejercicioSynchronized.hilos.HiloSuma;
 
 public class Main {
 	

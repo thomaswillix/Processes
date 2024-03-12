@@ -1,14 +1,14 @@
-package casino.main;
+package P2casino.main;
 
 import java.util.Scanner;
 
-import casino.datos.Cuenta;
-import casino.datos.CuentaCasino;
-import casino.datos.Ruleta;
-import casino.hilos.HiloJugador;
-import casino.hilos.HiloJugadorv2;
-import casino.hilos.HiloJugadorv3;
-import casino.hilos.HiloRuleta;
+import P2casino.datos.Cuenta;
+import P2casino.datos.CuentaCasino;
+import P2casino.datos.Ruleta;
+import P2casino.hilos.HiloJugador;
+import P2casino.hilos.HiloJugadorv2;
+import P2casino.hilos.HiloJugadorv3;
+import P2casino.hilos.HiloRuleta;
 
 public class Main {
 	public static void main(String[] args) {
