@@ -6,25 +6,12 @@ public class HiloRuleta extends Thread {
 
 	private Ruleta bola;
 	private boolean tienePasta = true;
-	/*private HiloJugador[] partida1;
-	private HiloJugadorv2[] partida2;
-	private HiloJugadorv3[] partida3;*/
+	private int modoJuego;
 
-	public HiloRuleta(Ruleta b) {
+	public HiloRuleta(Ruleta b, int juego) {
 		this.bola = b;
+		this.modoJuego = juego;
 	}
-	/*public HiloRuleta(Ruleta b, HiloJugador[] partidaNumAleatorios) {
-		this.bola = b;
-		this.partida1=partidaNumAleatorios;
-	}
-	public HiloRuleta(Ruleta b, HiloJugadorv2[] partidaNumPares) {
-		this.bola = b;
-		this.partida2=partidaNumPares;
-	}
-	public HiloRuleta(Ruleta b, HiloJugadorv3[] partidaMartingala) {
-		this.bola = b;
-		this.partida3=partidaMartingala;
-	}*/
 
 	@Override
 	public void run() {
@@ -32,15 +19,20 @@ public class HiloRuleta extends Thread {
 		int aux1 = 0;
 		while (tienePasta || (aux == bola.getBanca() && aux1 != bola.getNum())) {
 
-			/*if(!estanVivos()) {
+			/*if(!estanVivos(modoJuego)) {
 				interrupt();
 			}*/
 
 			aux1 = bola.getNum();
+			System.out.println("Ruleta girando...");
+			int num = 3;
 			try {
-				sleep(3000);
-				// TODO Auto-generated method stub
-			} catch (InterruptedException e) {
+				do{
+					num--;
+					sleep(1000);
+					System.out.print(".");
+				}while(num!=0);
+			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			synchronized (bola) {
@@ -59,10 +51,24 @@ public class HiloRuleta extends Thread {
 		interrupt();
 	}
 	
-	/*public boolean estanVivos() {
-		for (HiloJugador hiloJugador : partida1) {
-			if(hiloJugador.isAlive()) {
-				return true;
+	/*public boolean estanVivos(int modoJuego) {
+		if (modoJuego == 1){
+			for (HiloJugador hiloJugador : partida1) {
+				if(hiloJugador.isAlive()) {
+					return true;
+				}
+			}
+		}else if (modoJuego==2){
+			for (HiloJugadorv2 hiloJugador : partida1) {
+				if(hiloJugador.isAlive()) {
+					return true;
+				}
+			}
+		}else {
+			for (HiloJugadorv3 hiloJugador : partida1) {
+				if(hiloJugador.isAlive()) {
+					return true;
+				}
 			}
 		}
 		return false;

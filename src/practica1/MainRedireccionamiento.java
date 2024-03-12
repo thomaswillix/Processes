@@ -18,7 +18,7 @@ public class MainRedireccionamiento {
 		try {
 			pb.start();
 		}
-		catch (IOException e) 
+		catch (IOException e)
 		{
  			e.printStackTrace();
  		}

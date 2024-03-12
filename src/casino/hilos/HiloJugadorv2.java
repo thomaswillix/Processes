@@ -39,6 +39,7 @@ public class HiloJugadorv2 extends Thread {
 					esPar= true;
 					cadena = "pares";
 				}else if (numero ==1){
+					esPar = false;
 					cadena = "impares";
 				}
 

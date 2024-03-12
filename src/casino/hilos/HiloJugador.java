@@ -5,11 +5,11 @@ import casino.datos.Ruleta;
 
 public class HiloJugador extends Thread {
 	private Cuenta pres;
-	private Ruleta ruleta;
+	private Ruleta casino;
 
 	public HiloJugador(Ruleta ruleta, Cuenta pres) {
 		super();
-		this.ruleta = ruleta;
+		this.casino = ruleta;
 		this.pres = pres;
 	}
 
@@ -20,32 +20,32 @@ public class HiloJugador extends Thread {
 
 
 		while (pres.getSaldo() > 0) {
-			synchronized (ruleta) {
+			synchronized (casino) {
 				pres.retirar(10);
-				ruleta.ingresar(10);
+				casino.ingresar(10);
 
 				numero = (int) (Math.random() * 36 + 1);
 
 				try {
-					ruleta.wait();
+					casino.wait();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 
-				if (numero == ruleta.getNum()) {
+				if (numero == casino.getNum()) {
 					System.out.println("Jugador:\nHe ganado apostando al: " + numero);
-					ruleta.retirar(360);
+					casino.retirar(360);
 					pres.ingresar(360);
 				} else {
 					System.out.println("Jugador:\nHe perdido apostando al: " + numero +
-							" el num ganador es: " + ruleta.getNum());
+							" el num ganador es: " + casino.getNum());
 				}
-				System.out.println("Dinero de la Banca: " + ruleta.getBanca());
+				System.out.println("Dinero de la Banca: " + casino.getBanca());
 
 				System.out.println("Dinero del jugador " + pres.getSaldo() +
 						"\n------------------------------------------------");
 
-				if (ruleta.getBanca() <= 0) {
+				if (casino.getBanca() <= 0) {
 					System.out.println("La banca ha quebrado");
 					break;
 				}

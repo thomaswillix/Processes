@@ -8,7 +8,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Contador cuenta = new Contador(100);
-		int n = 100;
+		int n ;
 		HiloSuma[] hilosS= new HiloSuma[120];
 		HiloResta[] hilosR= new HiloResta[120];  
 		
@@ -30,7 +30,6 @@ public class Main {
 				hilosS[i].join();
 				hilosR[i].join();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

@@ -8,8 +8,10 @@ public class Main {
 		try {
 			do {
 				segundos++;
+				//Se duerme 1 segundo
 				Thread.sleep(1000);
-			} while (segundos <= 5);
+				//Hasta llegar a los 30 segundos
+			} while (segundos <= 30);
 			h1.interrumpir();
 			System.exit(0);
 		} catch (InterruptedException e) {

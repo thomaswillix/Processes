@@ -40,7 +40,6 @@ public class Hilo extends Thread {
 			
 			fr.close();
 			System.out.println("la vocal " + l + " aparece " + cont + " veces");
-			notify();
 			cont = 0;
 		} catch (IOException e) {
 		}
