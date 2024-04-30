@@ -15,7 +15,6 @@ public class Main {
 			h1.interrumpir();
 			System.exit(0);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

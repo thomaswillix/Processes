@@ -16,7 +16,7 @@ public class MainRedireccionamientoPersonas {
             error[i] =  new File("error" + (i+1) + ".txt");
 
         }
-
+/*
         pb_programa.redirectInput(entrada);
 //        pb_programa.redirectOutput(salida);
         pb_programa.redirectOutput(ProcessBuilder.Redirect.INHERIT);
@@ -36,6 +36,6 @@ public class MainRedireccionamientoPersonas {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Fin del programa");
+        System.out.println("Fin del programa");*/
     }
 }

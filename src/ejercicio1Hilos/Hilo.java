@@ -10,7 +10,6 @@ public class Hilo extends Thread {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		System.out.println("¿En qué año se empezó a publicar One Piece?"
 				+ "\nSi respondes mal, te eliminaré todos los datos del disco duro.");
 		num = sc.nextInt();
