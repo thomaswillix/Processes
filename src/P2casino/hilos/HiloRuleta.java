@@ -8,11 +8,9 @@ public class HiloRuleta extends Thread {
 	private Ruleta bola;
 	private CuentaCasino casino;
 	private boolean tienePasta = true;
-	private int modoJuego;
 
-	public HiloRuleta(Ruleta b, CuentaCasino cc, int juego) {
+	public HiloRuleta(Ruleta b, CuentaCasino cc) {
 		this.bola = b;
-		this.modoJuego = juego;
 		this.casino = cc;
 	}
 
@@ -21,10 +19,6 @@ public class HiloRuleta extends Thread {
 		int aux = 0;
 		int aux1 = 0;
 		while (tienePasta || (aux == casino.getBanca() && aux1 != bola.getNum())) {
-
-			/*if(!estanVivos(modoJuego)) {
-				interrupt();
-			}*/
 
 			int num = 3;
 			try {
@@ -52,26 +46,4 @@ public class HiloRuleta extends Thread {
 		interrupt();
 	}
 
-	/*public boolean estanVivos(int modoJuego) {
-		if (modoJuego == 1){
-			for (HiloJugador hiloJugador : partida1) {
-				if(hiloJugador.isAlive()) {
-					return true;
-				}
-			}
-		}else if (modoJuego==2){
-			for (HiloJugadorv2 hiloJugador : partida1) {
-				if(hiloJugador.isAlive()) {
-					return true;
-				}
-			}
-		}else {
-			for (HiloJugadorv3 hiloJugador : partida1) {
-				if(hiloJugador.isAlive()) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}*/
 }

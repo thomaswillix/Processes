@@ -52,7 +52,7 @@ public class Main {
 			}
 		}
 
-		HiloRuleta lanzador= new HiloRuleta(ruleta, cc, juego);
+		HiloRuleta lanzador= new HiloRuleta(ruleta, cc);
 		lanzador.start();
 	}
 
