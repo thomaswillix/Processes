@@ -1,6 +1,6 @@
-package P2ejercicioSynchronized.hilos;
+package P2simulacionBancaria.hilos;
 
-import P2ejercicioSynchronized.datos.Contador;
+import P2simulacionBancaria.datos.Contador;
 
 public class HiloSuma extends Thread {
 

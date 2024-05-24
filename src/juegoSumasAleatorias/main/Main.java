@@ -1,6 +1,6 @@
-package ejercicio3Hilos.main;
+package juegoSumasAleatorias.main;
 
-import ejercicio3Hilos.hilos.Hilo;
+import juegoSumasAleatorias.hilos.Hilo;
 
 
 public class Main {

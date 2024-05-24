@@ -1,4 +1,4 @@
-package ejercicio3Hilos.datos;
+package juegoSumasAleatorias.datos;
 
 public class Contador {
     int points;

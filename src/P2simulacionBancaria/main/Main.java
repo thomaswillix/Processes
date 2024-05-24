@@ -1,8 +1,8 @@
-package P2ejercicioSynchronized.main;
+package P2simulacionBancaria.main;
 
-import P2ejercicioSynchronized.datos.Contador;
-import P2ejercicioSynchronized.hilos.HiloResta;
-import P2ejercicioSynchronized.hilos.HiloSuma;
+import P2simulacionBancaria.datos.Contador;
+import P2simulacionBancaria.hilos.HiloResta;
+import P2simulacionBancaria.hilos.HiloSuma;
 
 public class Main {
 	

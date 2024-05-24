@@ -1,6 +1,6 @@
-package ejercicio3Hilos.hilos;
+package juegoSumasAleatorias.hilos;
 
-import ejercicio3Hilos.datos.Contador;
+import juegoSumasAleatorias.datos.Contador;
 
 import java.util.Random;
 import java.util.Scanner;

@@ -1,6 +1,6 @@
-    package ejercicio3Hilos.hilos;
+    package juegoSumasAleatorias.hilos;
 
-    import ejercicio3Hilos.datos.Contador;
+    import juegoSumasAleatorias.datos.Contador;
 
     public class Temporizador extends Thread{
         private static final int TIEMPO_LIMITE = 60;
