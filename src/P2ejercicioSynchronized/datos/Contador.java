@@ -9,21 +9,22 @@ public class Contador {
 	}
 	
 	public synchronized void incrementar(int n) {
-		c+=n;
-		if (c <0) {
-			System.out.println("Negativo");
-		}
+		this.c+=n;
+		notify();
 	}
 
 	public synchronized void decrementar(int n) {
-		c-=n;
-		if (n < 0) {
-			System.out.println("Negativo");
+		while (c < n) {
+			try {
+				wait();
+			} catch (InterruptedException e) {}
 		}
-	}
-	
-	public synchronized void movimiento(int n) {
-		c+=n;
+		c -= n;
+
+		if (c < 0){
+			System.err.println("Saldo negativo " + c);
+		}
+
 	}
 
 	public synchronized int valor() {
