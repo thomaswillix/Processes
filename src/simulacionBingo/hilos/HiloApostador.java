@@ -6,12 +6,12 @@ import java.util.*;
 
 public class HiloApostador extends Thread{
 
-    private boolean bingo = false;
     private Lanzador lanzador;
     private Set<Integer>[] carton = new HashSet[3];
     private int numero;
     private int fila;
     private HashMap<Integer, Integer> coordenadas = new HashMap<>();
+    private int contador = 0;
     public HiloApostador(Lanzador lanzador) {
         //Le damos al hilo los datos correspondientes
         this.lanzador = lanzador;
@@ -53,6 +53,7 @@ public class HiloApostador extends Thread{
             for (int i = 0; i < 3; i++) {
                 fila = i;
                 if(carton[i].contains(numero)){
+                    contador++;
                     System.out.println("El " + this.getName() + " tiene el número en su fila: " + (fila +1));
                     carton[i].remove(numero);
                     if(!coordenadas.containsKey(fila)){
@@ -65,10 +66,11 @@ public class HiloApostador extends Thread{
                 }
             }
             if (coordenadas.getOrDefault(1, 0)==5 || coordenadas.getOrDefault(2, 0)==5 || coordenadas.getOrDefault(3, 0)==5){
+                System.out.println(this.getName()+ " ha hecho línea!");
+            }
+            if (contador==15){
                 System.out.println("Bingo!");
-                synchronized (lanzador){
-                    lanzador.ganador();
-                }
+                lanzador.ganador();
             }
         }
 
