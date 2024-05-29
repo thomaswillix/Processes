@@ -1,5 +1,4 @@
 package ejercicio1Sockets.server;
-//Servidor con puerto 12345
 
 import java.io.*;
 import java.net.ServerSocket;
