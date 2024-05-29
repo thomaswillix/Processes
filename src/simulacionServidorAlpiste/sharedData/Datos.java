@@ -1,5 +1,6 @@
 package simulacionServidorAlpiste.sharedData;
 
+
 public class Datos {
     private int precioAlpiste;
     private int precioNabina;

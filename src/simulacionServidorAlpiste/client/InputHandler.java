@@ -37,20 +37,24 @@ public class InputHandler implements Runnable{
             }while (nCriador<0|| nCriador>90);
             //Envío del número de criador al servidor.
             out.writeInt(nCriador);
-            //
-            System.out.println("Kg de Alpiste: (Precio actual +" + d.getPrecioAlpiste() +") " );
-            kgAlpiste = sc.nextInt();
+            if (nCriador==0){
+                //Menu Criador
+                System.out.println(in.readUTF());
+            }else{
+                System.out.println("Kg de Alpiste: (Precio actual +" + d.getPrecioAlpiste() +") " );
+                kgAlpiste = sc.nextInt();
 
-            System.out.println("Kg de Nabina: (Precio actual +" + d.getPrecioNabina() +") " );
-            kgNabina = sc.nextInt();
+                System.out.println("Kg de Nabina: (Precio actual +" + d.getPrecioNabina() +") " );
+                kgNabina = sc.nextInt();
 
-            System.out.println("Kg de Avena: (Precio actual +" + d.getPrecioAvena() +") " );
-            kgAvena = sc.nextInt();
+                System.out.println("Kg de Avena: (Precio actual +" + d.getPrecioAvena() +") " );
+                kgAvena = sc.nextInt();
 
-            System.out.println("Kg de Perilla: (Precio actual +" + d.getPrecioPerilla() +") " );
-            kgPerilla = sc.nextInt();
+                System.out.println("Kg de Perilla: (Precio actual +" + d.getPrecioPerilla() +") " );
+                kgPerilla = sc.nextInt();
 
-            out.writeUTF(kgAlpiste + " " + kgNabina + " " + kgAvena + " " + kgPerilla);
+                out.writeUTF(kgAlpiste + " " + kgNabina + " " + kgAvena + " " + kgPerilla);
+            }
             response = in.readUTF();
             if (response.equals("/salir")) {
                 System.err.println("Saliendo...");

@@ -29,8 +29,30 @@ public class ConnectionHandler implements Runnable{
             String data[];
             while(true) {
                 if (usuarios.get(cliente)==0){
-                    out.writeUTF(Server.menuAdmin());
+                    do {
+                        out.writeUTF(Server.menuAdmin());
 
+                        cod = in.readInt();
+                        if (cod<0 || cod>6){
+                            out.writeUTF("codigo mal introducido");
+                        }else{
+                            switch (cod){
+                                case 1:
+
+                                    break;
+                                case 2:
+                                    break;
+                                case 3:
+                                    break;
+                                case 4:
+                                    break;
+                                case 5:
+                                    break;
+                                case 6:
+                                    break;
+                            }
+                        }
+                    }while (cod!=0);
                 }else {
                     String dataReceived, send;
                     dataReceived = in.readUTF();
