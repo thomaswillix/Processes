@@ -4,10 +4,10 @@ import java.io.IOException;
 
 public class MainRedireccionamiento {
 	public static void main(String[] args) {
-		ProcessBuilder pb= new ProcessBuilder("./juego");
-		File fin = new File("entrada.txt");
-		File fout = new File("salida.txt");
-		File ferr =  new File("error.txt");
+		ProcessBuilder pb= new ProcessBuilder("./files/juego");
+		File fin = new File("./files/entrada1.txt");
+		File fout = new File("./files/salida1.txt");
+		File ferr =  new File("./files/error1.txt");
 		
 		pb.redirectInput(fin);
 		pb.redirectOutput(fout);
