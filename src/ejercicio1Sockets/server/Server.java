@@ -13,26 +13,22 @@ public class Server {
     private static List<String> mensajesAmbiguos;
     public static void main(String[] args){
         cargarMensajes();
+        ServerSocket ssocket = null;
         try {
-            ServerSocket ssocket = new ServerSocket(12345);
-            Socket cliente = ssocket.accept();
-            System.out.println("connection accepted");
+            ssocket = new ServerSocket(12345);
+            while(true) {
+                Socket cliente = ssocket.accept();
+                System.out.println("connection accepted");
 
-            DataInputStream in = new DataInputStream(cliente.getInputStream());
-            DataOutputStream out = new DataOutputStream(cliente.getOutputStream());
-
-            String dataReceived;
-            while (!(dataReceived = in.readUTF()).equals("adios")) {
-                System.out.println("Server received: " + dataReceived);
-                out.writeUTF(escribirMensajeAmbiguo());
+                ConnectionHandler hCliente = new ConnectionHandler(cliente);
+                Thread t = new Thread(hCliente);
+                t.start();
             }
-            out.writeUTF("/salir");
-            cliente.close();
-        }catch (IOException e){
-            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
-    private static void cargarMensajes(){
+    public static void cargarMensajes(){
         File f = new File("files/frases.txt");
         String line;
         mensajesAmbiguos = new ArrayList<>();
@@ -51,7 +47,7 @@ public class Server {
             System.err.println("File not found");
         }
     }
-    private static String escribirMensajeAmbiguo(){
+    public static String escribirMensajeAmbiguo(){
         Random r = new Random();
         int n = r.nextInt(mensajesAmbiguos.size());
         return mensajesAmbiguos.get(n);

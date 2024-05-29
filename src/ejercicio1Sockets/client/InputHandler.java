@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class ClientHandler implements Runnable{
+public class InputHandler implements Runnable{
     private Socket socket;
-    public ClientHandler(Socket s) {
+    public InputHandler(Socket s) {
         this.socket = s;
     }
 
