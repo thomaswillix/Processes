@@ -115,7 +115,7 @@ public class Client {
                 throw new RuntimeException(e);
             }
             BufferedWriter bw =  new BufferedWriter(new FileWriter(f));
-            String registro = numeroRegistro + ";" + kgAlpiste + ";"+ kgNabina + ";"+ kgAvena + ";"+ kgPerilla + ";" +importe + "\n";
+            String registro = numeroRegistro + ";" + kgAlpiste + ";"+ kgNabina + ";"+ kgAvena + ";"+ kgPerilla + ";" +importe;
             bw.write(registro);
             bw.close();
         } catch (FileNotFoundException e) {

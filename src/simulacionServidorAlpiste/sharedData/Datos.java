@@ -8,10 +8,10 @@ public class Datos {
     private int precioPerilla;
 
     public Datos() {
-        precioAlpiste = 1500;
-        precioNabina = 1750;
-        precioAvena = 750;
-        precioPerilla = 6500;
+        precioAlpiste = 150;
+        precioNabina = 175;
+        precioAvena = 75;
+        precioPerilla = 650;
     }
 
     public synchronized int getPrecioAlpiste() {

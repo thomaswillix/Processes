@@ -89,8 +89,7 @@ public class ConnectionHandler implements Runnable{
         try {
             BufferedReader br = new BufferedReader(new FileReader(f));
             try {
-                String line;
-                while ((line = br.readLine())!=null){
+                while (br.readLine()!=null){
                     lineastotales++;
                 }
             } catch (EOFException e) {
