@@ -2,42 +2,48 @@ package simulacionServidorAlpiste.sharedData;
 
 
 public class Datos {
-    private static int precioAlpiste = 1500;
-    private static int precioNabina = 1750;
-    private static int precioAvena = 750;
-    private static int precioPerilla = 6500;
+    private int precioAlpiste;
+    private int precioNabina;
+    private int precioAvena;
+    private int precioPerilla;
 
+    public Datos() {
+        precioAlpiste = 1500;
+        precioNabina = 1750;
+        precioAvena = 750;
+        precioPerilla = 6500;
+    }
 
-    public static synchronized int getPrecioAlpiste() {
+    public synchronized int getPrecioAlpiste() {
         return precioAlpiste;
     }
 
     public void setPrecioAlpiste(int precioAlpiste) {
-        Datos.precioAlpiste = precioAlpiste;
+        this.precioAlpiste = precioAlpiste;
     }
 
-    public static synchronized int getPrecioNabina() {
+    public synchronized int getPrecioNabina() {
         return precioNabina;
     }
 
     public void setPrecioNabina(int precioNabina) {
-        Datos.precioNabina = precioNabina;
+        this.precioNabina = precioNabina;
     }
 
-    public static synchronized int getPrecioAvena() {
+    public synchronized int getPrecioAvena() {
         return precioAvena;
     }
 
     public void setPrecioAvena(int precioAvena) {
-        Datos.precioAvena = precioAvena;
+        this.precioAvena = precioAvena;
     }
 
-    public static synchronized int getPrecioPerilla() {
+    public synchronized int getPrecioPerilla() {
         return precioPerilla;
     }
 
     public void setPrecioPerilla(int precioPerilla) {
-        Datos.precioPerilla = precioPerilla;
+        this.precioPerilla = precioPerilla;
     }
 
 }

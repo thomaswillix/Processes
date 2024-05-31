@@ -10,13 +10,14 @@ import java.util.HashMap;
 public class ConnectionHandler implements Runnable{
 
     private Socket cliente;
-    private Datos d = new Datos();
-    private static int cod;
+    private Datos d;
+    private static int num;
     private static HashMap<Integer, Socket> usuarios = new HashMap<>();
     private static File f = new File("files/pedidos.csv");
 
-    public ConnectionHandler(Socket s){
+    public ConnectionHandler(Socket s, Datos datos){
         this.cliente = s;
+        this.d = datos;
     }
 
     @Override
@@ -25,18 +26,17 @@ public class ConnectionHandler implements Runnable{
         try {
             DataInputStream in = new DataInputStream(cliente.getInputStream());
             DataOutputStream out = new DataOutputStream(cliente.getOutputStream());
-            cod = in.readInt();
-            usuarios.put(cod, cliente);
-            String data[];
+            num = in.readInt();
+            usuarios.put(num, cliente);
             while(true) {
-                if (cod==0){
+                if (num==0){
                     do {
                         out.writeUTF(menuAdmin());
-                        cod = in.readInt();
-                        if (cod<0 || cod>6){
+                        num = in.readInt();
+                        if (num<0 || num>6){
                             out.writeUTF("codigo mal introducido");
                         }else{
-                            switch (cod){
+                            switch (num){
                                 case 0:
                                     out.writeUTF("exit");
                                     break;
@@ -44,7 +44,7 @@ public class ConnectionHandler implements Runnable{
                                 case 2:
                                 case 3:
                                 case 4:
-                                    cambiarPrecio(in,out,cod);
+                                    cambiarPrecio(in,out,num);
                                     out.writeUTF("Operación realizada con éxito");
                                     break;
                                 case 5:
@@ -55,18 +55,24 @@ public class ConnectionHandler implements Runnable{
                                     break;
                             }
                         }
-                    }while (cod!=0);
+                    }while (num!=0);
                 }else {
-                    String dataReceived;
-                    int importe;
-                    dataReceived = in.readUTF();
-                    System.out.println("Server received: " + dataReceived);
-                    data = dataReceived.split(" ");
-                    synchronized (d){
-                        importe = Datos.getPrecioAlpiste()*Integer.parseInt(data[0]) + Datos.getPrecioNabina()*Integer.parseInt(data[1]) +
-                                +Datos.getPrecioAvena()*Integer.parseInt(data[2]) + Datos.getPrecioPerilla()*Integer.parseInt(data[3]);
-                        out.writeInt(importe);
-                    }
+                    int precio =d.getPrecioAlpiste();
+                    out.writeInt(precio);
+                    System.out.println(in.readUTF());
+
+                    precio =d.getPrecioNabina();
+                    out.writeInt(precio);
+                    System.out.println(in.readUTF());
+
+                    precio =d.getPrecioAvena();
+                    out.writeInt(precio);
+                    System.out.println(in.readUTF());
+
+                    precio =d.getPrecioPerilla();
+                    out.writeInt(precio);
+                    System.out.println(in.readUTF());
+
                 }
                 out.writeUTF("exit");
                 cliente.close();
@@ -154,5 +160,4 @@ public class ConnectionHandler implements Runnable{
                 "Elige la opción:");
 
     }
-
 }
