@@ -34,32 +34,46 @@ public class InputHandler implements Runnable{
             }while (nCriador<0|| nCriador>90);
             //Envío del número de criador al servidor.
             out.writeInt(nCriador);
+
             if (nCriador==0){
-                //Menu Criador
+                int operacion = 0, pedidos = 0;
+                String s;
+                double recaudacion;
+                //Menu Admin
                 do {
                     response = in.readUTF();
-                    if (response.equals("exit")){
-                        System.err.println("saliendo");
-                    }else if(response.startsWith("Administración ")){
+                    if(response.startsWith("Administración ")) {
                         System.out.println(response);
-                        System.out.println("¿Qué precio le quiere dar? (en céntimos)");
-                        nCriador  = sc.nextInt();
-                        out.writeInt(nCriador);
-                    }else System.out.println(response);
-
+                        operacion = sc.nextInt();
+                        out.writeInt(operacion);
+                    }
+                    if (response.equals("/precio")){
+                            System.out.println("¿Qué precio le quiere dar? (en céntimos)");
+                            operacion = sc.nextInt();
+                            out.writeInt(operacion);
+                            System.out.println(in.readUTF());
+                    }
+                    if(response.startsWith("/recaudacion")){
+                            recaudacion = Double.parseDouble(response.split(" ")[1]);
+                            System.out.println("la recaudación total es de: " + recaudacion);
+                    }
+                    if (response.startsWith("/pedidosAtendidos")){
+                            pedidos = Integer.parseInt(response.split(" ")[1]);
+                            System.out.println("Total de pedidos atendidos: " + pedidos);
+                    }
                 }while (!response.equals("exit"));
 
             }else{
-                System.out.println("Kg de Alpiste: (Precio actual +" + Datos.getPrecioAlpiste() +") " );
+                System.out.println("Kg de Alpiste: (Precio actual " + Datos.getPrecioAlpiste() +") " );
                 kgAlpiste = sc.nextInt();
 
-                System.out.println("Kg de Nabina: (Precio actual +" + Datos.getPrecioNabina() +") " );
+                System.out.println("Kg de Nabina: (Precio actual " + Datos.getPrecioNabina() +") " );
                 kgNabina = sc.nextInt();
 
-                System.out.println("Kg de Avena: (Precio actual +" + Datos.getPrecioAvena() +") " );
+                System.out.println("Kg de Avena: (Precio actual " + Datos.getPrecioAvena() +") " );
                 kgAvena = sc.nextInt();
 
-                System.out.println("Kg de Perilla: (Precio actual +" + Datos.getPrecioPerilla() +") " );
+                System.out.println("Kg de Perilla: (Precio actual " + Datos.getPrecioPerilla() +") " );
                 kgPerilla = sc.nextInt();
 
                 out.writeUTF(kgAlpiste + " " + kgNabina + " " + kgAvena + " " + kgPerilla);

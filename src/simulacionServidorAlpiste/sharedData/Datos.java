@@ -2,17 +2,11 @@ package simulacionServidorAlpiste.sharedData;
 
 
 public class Datos {
-    private static int precioAlpiste;
-    private static int precioNabina;
-    private static int precioAvena;
-    private static int precioPerilla;
+    private static int precioAlpiste = 1500;
+    private static int precioNabina = 1750;
+    private static int precioAvena = 750;
+    private static int precioPerilla = 6500;
 
-    public Datos() {
-        precioAlpiste = 1500;
-        precioNabina = 1750;
-        precioAvena = 750;
-        precioPerilla = 6500;
-    }
 
     public static synchronized int getPrecioAlpiste() {
         return precioAlpiste;

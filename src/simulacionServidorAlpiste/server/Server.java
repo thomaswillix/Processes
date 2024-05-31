@@ -11,11 +11,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Server implements Runnable{
+public class Server {
     private static ServerSocket server;
 
-    @Override
-    public void run() {
+    public static void main(String[] args) {
         server = null;
         try {
             server = new ServerSocket(9876);

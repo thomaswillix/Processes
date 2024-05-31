@@ -5,14 +5,11 @@ import simulacionServidorAlpiste.sharedData.Datos;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Client implements Runnable {
+public class Client {
     private static Socket socket;
 
-    @Override
-    public void run() {
-        System.out.println("---------------------- COMPRA DE ALPISTE ----------------------\n" +
-                "\n----------------------COMANDOS----------------------\n/salir --> Salir" +
-                " del chat\n----------------------------------------------------");
+    public static void main(String[] args) {
+        System.out.println("---------------------- COMPRA DE ALPISTE ----------------------");
 
         try {
             socket = new Socket("127.0.0.1", 9876);

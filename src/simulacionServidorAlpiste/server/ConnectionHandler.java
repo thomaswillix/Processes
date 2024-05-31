@@ -13,6 +13,7 @@ public class ConnectionHandler implements Runnable{
     private Datos d = new Datos();
     private static int cod;
     private static HashMap<Integer, Socket> usuarios = new HashMap<>();
+    private static File f = new File("files/pedidos.csv");
 
     public ConnectionHandler(Socket s){
         this.cliente = s;
@@ -44,11 +45,13 @@ public class ConnectionHandler implements Runnable{
                                 case 3:
                                 case 4:
                                     cambiarPrecio(in,out,cod);
+                                    out.writeUTF("Operación realizada con éxito");
                                     break;
                                 case 5:
                                     verRecaucadionPedidos(out);
                                     break;
                                 case 6:
+                                    numeroPedidosAtendidos(out);
                                     break;
                             }
                         }
@@ -65,7 +68,7 @@ public class ConnectionHandler implements Runnable{
                         out.writeInt(importe);
                     }
                 }
-                out.writeUTF("/salir");
+                out.writeUTF("exit");
                 cliente.close();
             }
         }catch (SocketException e){
@@ -73,6 +76,24 @@ public class ConnectionHandler implements Runnable{
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    private void numeroPedidosAtendidos(DataOutputStream out) throws IOException {
+        int lineastotales = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(f));
+            try {
+                String line;
+                while ((line = br.readLine())!=null){
+                    lineastotales++;
+                }
+            } catch (EOFException e) {
+                System.err.println("End of file");
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        out.writeUTF("/pedidosAtendidos " + lineastotales);
     }
 
     private void verRecaucadionPedidos(DataOutputStream out) throws IOException {
@@ -94,10 +115,11 @@ public class ConnectionHandler implements Runnable{
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        out.writeDouble(recaudacionTotal);
+        out.writeUTF("/recaudacion " +recaudacionTotal);
     }
 
     private void cambiarPrecio(DataInputStream in, DataOutputStream out, int cod) throws IOException {
+        out.writeUTF("/precio");
         synchronized (d){
             switch (cod){
                 case 1:
@@ -113,7 +135,8 @@ public class ConnectionHandler implements Runnable{
                     d.setPrecioPerilla(in.readInt());
                     break;
                 default:
-                    System.err.println();
+                    //ignore
+                    break;
             }
         }
 
