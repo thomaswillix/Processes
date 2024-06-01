@@ -92,10 +92,9 @@ public class Client {
                 guardarRegistro(numeroRegistro,kgAlpiste,kgNabina,kgAvena,kgPerilla,importeD);
             }
             response = in.readUTF();
-            if (response.equals("/salir")) {
+            if (response.equals("exit")) {
                 System.err.println("Saliendo...");
             }
-            else System.out.println(response);
             socket.close();
         } catch (IOException e){
             e.printStackTrace();
