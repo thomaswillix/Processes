@@ -73,6 +73,7 @@ public class ConnectionHandler implements Runnable{
                     out.writeInt(precio);
                     System.out.println(in.readUTF());
 
+                    numeroPedidosAtendidos(out);
                 }
                 out.writeUTF("exit");
                 cliente.close();
@@ -83,6 +84,7 @@ public class ConnectionHandler implements Runnable{
             e.printStackTrace();
         }
     }
+
 
     private void numeroPedidosAtendidos(DataOutputStream out) throws IOException {
         int lineastotales = 0;

@@ -87,7 +87,9 @@ public class Client {
                 importe += precio * kgPerilla;
                 double importeD = (double) importe/100;
                 System.out.println("Importe total: " + importeD);
-                guardarRegistro(kgAlpiste,kgNabina,kgAvena,kgPerilla,importeD);
+                response = in.readUTF();
+                int numeroRegistro = Integer.parseInt(response.split(" ")[1]);
+                guardarRegistro(numeroRegistro,kgAlpiste,kgNabina,kgAvena,kgPerilla,importeD);
             }
             response = in.readUTF();
             if (response.equals("/salir")) {
@@ -100,23 +102,12 @@ public class Client {
         }
     }
 
-    private static void guardarRegistro(int kgAlpiste, int kgNabina, int kgAvena, int kgPerilla, double importe) {
+    private static void guardarRegistro(int numeroRegistro, int kgAlpiste, int kgNabina, int kgAvena, int kgPerilla, double importe) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader(f));
-            int numeroRegistro = 1;
-            try {
-                while (br.readLine()!=null){
-                    numeroRegistro++;
-                }
-            } catch (EOFException e) {
-                br.close();
-                System.err.println("End of file");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            BufferedWriter bw =  new BufferedWriter(new FileWriter(f));
+            BufferedWriter bw =  new BufferedWriter(new FileWriter(f, true));
             String registro = numeroRegistro + ";" + kgAlpiste + ";"+ kgNabina + ";"+ kgAvena + ";"+ kgPerilla + ";" +importe;
             bw.write(registro);
+            bw.newLine();
             bw.close();
         } catch (FileNotFoundException e) {
             System.err.println("File not found");
