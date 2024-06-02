@@ -1,6 +1,6 @@
-package simulacionServidorAlpiste.server;
+package simulacionServidorAlpisteExtr.server;
 
-import simulacionServidorAlpiste.sharedData.Datos;
+import simulacionServidorAlpisteExtr.sharedData.Datos;
 
 import java.io.*;
 import java.net.Socket;
