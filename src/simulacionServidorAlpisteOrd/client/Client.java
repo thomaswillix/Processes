@@ -10,7 +10,7 @@ public class Client {
     private static Socket socket;
     private static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.println("---------------------- COMPRA DE ALPISTE ----------------------");
+        System.out.println("---------------------- COMPRA DE SEMILLAS ----------------------");
         try {
             socket = new Socket("127.0.0.1", 12345);
 
