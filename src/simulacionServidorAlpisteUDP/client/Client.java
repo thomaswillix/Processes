@@ -18,6 +18,9 @@ public class Client {
     static Scanner sc = new Scanner(System.in);
 
     private static final InetAddress address;
+    private static int nroCriador;
+    private static int nroKg;
+
 
     static {
         try {
@@ -27,29 +30,36 @@ public class Client {
         }
     }
 
-    private static String username;
     private static final int SERVER_PORT = 8000; // send to server
     private static byte[] incoming = new byte[1024];
 
 
     public static void main(String[] args) {
         System.out.println("---------------------- COMPRA DE ALPISTE ----------------------");
-        // send initialization message to the server and validate username
         String received;
+        System.out.println("Introduzca su número de criador: ");
         try {
-            do {
-            username = sc.nextLine();
-            byte[] uuid = ("init; " + username).getBytes();
-            DatagramPacket initialize = new DatagramPacket(uuid, uuid.length, address, SERVER_PORT);
-            socket.send(initialize);
 
-            DatagramPacket packet = new DatagramPacket(incoming, incoming.length);
-                socket.receive(packet);
+            nroCriador = sc.nextInt();
+            byte[] data = ("/nroC;" +nroCriador).getBytes();
+            DatagramPacket packet = new DatagramPacket(data, data.length, address, SERVER_PORT);
+            socket.send(packet);
 
+            packet = new DatagramPacket(incoming, incoming.length);
+            socket.receive(packet);
             received = new String(packet.getData(), 0, packet.getLength()) + "\n";
             System.out.print(received);
 
-        }while (received.equals("This user is currently unavailable, please introduce another nickname\n"));
+            nroKg = sc.nextInt();
+            data = ("/kg;" + nroKg).getBytes();
+            packet = new DatagramPacket(data, data.length, address, SERVER_PORT);
+            socket.send(packet);
+
+            packet = new DatagramPacket(incoming, incoming.length);
+            socket.receive(packet);
+            received = new String(packet.getData(), 0, packet.getLength()) + "\n";
+            System.out.print(received);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
