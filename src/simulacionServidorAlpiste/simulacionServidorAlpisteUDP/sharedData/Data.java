@@ -1,4 +1,4 @@
-package simulacionServidorAlpisteUDP.sharedData;
+package simulacionServidorAlpiste.simulacionServidorAlpisteUDP.sharedData;
 
 public class Data {
 

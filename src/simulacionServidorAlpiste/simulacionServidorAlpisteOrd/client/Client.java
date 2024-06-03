@@ -1,4 +1,4 @@
-package simulacionServidorAlpisteOrd.client;
+package simulacionServidorAlpiste.simulacionServidorAlpisteOrd.client;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

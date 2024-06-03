@@ -1,4 +1,4 @@
-package simulacionServidorAlpisteExtr.client;
+package simulacionServidorAlpiste.simulacionServidorAlpisteExtr.client;
 
 import java.io.*;
 import java.net.Socket;

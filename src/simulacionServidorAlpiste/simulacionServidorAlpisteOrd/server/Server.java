@@ -1,6 +1,6 @@
-package simulacionServidorAlpisteOrd.server;
+package simulacionServidorAlpiste.simulacionServidorAlpisteOrd.server;
 
-import simulacionServidorAlpisteOrd.sharedData.Data;
+import simulacionServidorAlpiste.simulacionServidorAlpisteOrd.sharedData.Data;
 
 import java.io.IOException;
 import java.net.ServerSocket;

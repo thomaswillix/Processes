@@ -1,6 +1,6 @@
-package simulacionServidorAlpisteUDP.server;
+package simulacionServidorAlpiste.simulacionServidorAlpisteUDP.server;
 
-import simulacionServidorAlpisteUDP.sharedData.Data;
+import simulacionServidorAlpiste.simulacionServidorAlpisteUDP.sharedData.Data;
 
 import java.io.IOException;
 import java.net.*;

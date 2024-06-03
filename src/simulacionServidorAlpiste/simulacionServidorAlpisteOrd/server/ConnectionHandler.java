@@ -1,13 +1,12 @@
-package simulacionServidorAlpisteOrd.server;
+package simulacionServidorAlpiste.simulacionServidorAlpisteOrd.server;
 
-import simulacionServidorAlpisteOrd.sharedData.Data;
+import simulacionServidorAlpiste.simulacionServidorAlpisteOrd.sharedData.Data;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.HashMap;
 
 public class ConnectionHandler implements Runnable{
     private Socket cliente;
