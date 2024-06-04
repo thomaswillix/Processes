@@ -1,6 +1,7 @@
 package simulacionServidorAlpiste.simulacionServidorAlpisteExtr.server;
 
 
+import simulacionServidorAlpiste.simulacionServidorAlpisteExtr.client.ConnectionHandler;
 import simulacionServidorAlpiste.simulacionServidorAlpisteExtr.sharedData.Datos;
 
 import java.io.*;
@@ -13,6 +14,9 @@ public class Server {
     public static void main(String[] args) {
         server = null;
         datos = new Datos();
+        MenuAdmin menu = new MenuAdmin(datos);
+        Thread t = new Thread(menu);
+        t.start();
         try {
             server = new ServerSocket(9876);
             while(true) {
@@ -20,7 +24,7 @@ public class Server {
                 System.out.println("connection accepted");
 
                 ConnectionHandler hCliente = new ConnectionHandler(cliente, datos);
-                Thread t = new Thread(hCliente);
+                t = new Thread(hCliente);
                 t.start();
             }
         } catch (IOException e) {

@@ -29,68 +29,37 @@ public class Client {
             //Envío del número de criador al servidor.
             out.writeInt(nCriador);
 
-            if (nCriador==0){
-                int operacion = 0, pedidos = 0;
-                String s;
-                double recaudacion;
-                //Menu Admin
-                do {
-                    response = in.readUTF();
+            int kgAlpiste, kgNabina, kgAvena, kgPerilla, precio = in.readInt();
+            int importe;
 
-                    if(response.startsWith("Administración ")) {
-                        System.out.println(response);
-                        operacion = sc.nextInt();
-                        out.writeInt(operacion);
+            System.out.println("Kg de Alpiste: (Precio actual " + precio + ") ");
+            kgAlpiste = sc.nextInt();
+            out.writeUTF("Kilos de alpiste: " + kgAlpiste);
+            importe = precio * kgAlpiste;
 
-                    } else if (response.equals("/precio")){
-                        System.out.println("¿Qué precio le quiere dar? (en céntimos)");
-                        operacion = sc.nextInt();
-                        out.writeInt(operacion);
+            precio = in.readInt();
+            System.out.println("Kg de Nabina: (Precio actual " + precio + ") ");
+            kgNabina = sc.nextInt();
+            out.writeUTF("Kilos de nabina: " + kgNabina);
+            importe += precio * kgNabina;
 
-                    } else if(response.startsWith("/recaudacion")){
-                        recaudacion = Double.parseDouble(response.split(" ")[1]);
-                        System.out.println("la recaudación total es de: " + recaudacion);
+            precio = in.readInt();
+            System.out.println("Kg de Avena: (Precio actual " + precio + ") ");
+            kgAvena = sc.nextInt();
+            out.writeUTF("Kilos de avena: " + kgAvena);
+            importe += precio * kgAvena;
 
-                    } else if (response.startsWith("/pedidosAtendidos")){
-                        pedidos = Integer.parseInt(response.split(" ")[1]);
-                        System.out.println("Total de pedidos atendidos: " + pedidos);
+            precio = in.readInt();
+            System.out.println("Kg de Perilla: (Precio actual " + precio + ") ");
+            kgPerilla = sc.nextInt();
+            out.writeUTF("Kilos de perilla: " + kgPerilla);
+            importe += precio * kgPerilla;
+            double importeD = (double) importe / 100;
+            System.out.println("Importe total: " + importeD);
+            response = in.readUTF();
+            int numeroRegistro = Integer.parseInt(response.split(" ")[1]);
+            guardarRegistro(numeroRegistro, kgAlpiste, kgNabina, kgAvena, kgPerilla, importeD);
 
-                    }else System.out.println(response);
-                }while (!response.equals("exit"));
-
-            }else{
-                //RECIBIR INT CON EL RPECIO DEL ALPISTE
-                int kgAlpiste, kgNabina, kgAvena, kgPerilla, precio = in.readInt();
-                int importe;
-
-                System.out.println("Kg de Alpiste: (Precio actual " + precio +") " );
-                kgAlpiste = sc.nextInt();
-                out.writeUTF("Kilos de alpiste: " + kgAlpiste);
-                importe = precio * kgAlpiste;
-
-                precio = in.readInt();
-                System.out.println("Kg de Nabina: (Precio actual " + precio +") " );
-                kgNabina = sc.nextInt();
-                out.writeUTF("Kilos de nabina: " + kgNabina);
-                importe += precio * kgNabina;
-
-                precio = in.readInt();
-                System.out.println("Kg de Avena: (Precio actual " + precio +") " );
-                kgAvena = sc.nextInt();
-                out.writeUTF("Kilos de avena: " + kgAvena);
-                importe += precio * kgAvena;
-
-                precio = in.readInt();
-                System.out.println("Kg de Perilla: (Precio actual " + precio +") " );
-                kgPerilla = sc.nextInt();
-                out.writeUTF("Kilos de perilla: " + kgPerilla);
-                importe += precio * kgPerilla;
-                double importeD = (double) importe/100;
-                System.out.println("Importe total: " + importeD);
-                response = in.readUTF();
-                int numeroRegistro = Integer.parseInt(response.split(" ")[1]);
-                guardarRegistro(numeroRegistro,kgAlpiste,kgNabina,kgAvena,kgPerilla,importeD);
-            }
             response = in.readUTF();
             if (response.equals("exit")) {
                 System.err.println("Saliendo...");
