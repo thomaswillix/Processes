@@ -41,25 +41,13 @@ public class Server {
                     n = Integer.parseInt(String.valueOf(received.charAt(i)));
                     switch (n) {
                         case 0:
-                            n = 3;
-                            break;
                         case 1:
-                            n = 4;
-                            break;
                         case 2:
-                            n = 5;
-                            break;
                         case 3:
-                            n = 6;
-                            break;
                         case 4:
-                            n = 7;
-                            break;
                         case 5:
-                            n = 8;
-                            break;
                         case 6:
-                            n = 9;
+                            n = n+3;
                             break;
                         case 7:
                             n = 0;

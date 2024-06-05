@@ -18,9 +18,6 @@ public class Client {
     static Scanner sc = new Scanner(System.in);
 
     private static final InetAddress address;
-    private static int nroCriador;
-    private static int nroKg;
-
 
     static {
         try {
