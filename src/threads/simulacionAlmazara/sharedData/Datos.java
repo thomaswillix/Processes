@@ -15,19 +15,19 @@ public class Datos {
 
     public void depositarOrujo(int kgOrujo){
         this.tanqueOrujo+=kgOrujo;
-        //System.out.println("[ALMAZARA] UN ACEITUNERO HA DEPOSITADO ORUJO, KG EN EL TANQUE: " +tanqueOrujo);
+        System.out.println("[ALMAZARA] UN ACEITUNERO HA DEPOSITADO ORUJO, KG EN EL TANQUE: " +tanqueOrujo);
     }
     public void transportarOrujo(int kgOrujo){
         this.tanqueOrujo-=kgOrujo;
-        //System.out.println("[ALMAZARA] UN TRANSPORTISTA HA TRANSPORTADO ORUJO, KG EN EL TANQUE: " +tanqueOrujo);
+        System.out.println("[ALMAZARA] UN TRANSPORTISTA HA TRANSPORTADO ORUJO, KG EN EL TANQUE: " +tanqueOrujo);
     }
     public void depositarAceite(int kgAceite){
         this.depositoAceite+=kgAceite;
-        //System.out.println("[ALMAZARA] UN ACEITUNERO HA DEPOSITADO ACEITE, KG EN EL DEPOSITO: " +depositoAceite);
+        System.out.println("[ALMAZARA] UN ACEITUNERO HA DEPOSITADO ACEITE, KG EN EL DEPOSITO: " +depositoAceite);
     }
     public void transportarAceite(int kgAceite){
         this.depositoAceite-=kgAceite;
-        //System.out.println("[ALMAZARA] UN TRANSPORTISTA HA TRANSPORTADO ACEITE, KG EN EL DEPOSITO: " +depositoAceite);
+        System.out.println("[ALMAZARA] UN TRANSPORTISTA HA TRANSPORTADO ACEITE, KG EN EL DEPOSITO: " +depositoAceite);
     }
     public int getDepositoAceite() {
         return depositoAceite;
