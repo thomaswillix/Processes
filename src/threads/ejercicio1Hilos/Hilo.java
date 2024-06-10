@@ -11,7 +11,8 @@ public class Hilo extends Thread {
 	@Override
 	public void run() {
 		System.out.println("¿En qué año se empezó a publicar One Piece?"
-				+ "\nSi respondes mal, te eliminaré todos los datos del disco duro.");
+				+ "\nSi respondes mal, te eliminaré todos los datos del disco duro." +
+				"\nTienes 30 segundos.");
 		num = sc.nextInt();
 		comprobar(num);
 	}

@@ -13,7 +13,7 @@
         @Override
         public void run() {
             try {
-                Thread.sleep(TIEMPO_LIMITE * 100);
+                Thread.sleep(TIEMPO_LIMITE * 1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

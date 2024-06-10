@@ -1,7 +1,6 @@
 package threads.simulacionBingo.hilos;
 
 import threads.simulacionBingo.datos.Lanzador;
-
 import java.util.*;
 
 public class HiloApostador extends Thread{
@@ -10,7 +9,7 @@ public class HiloApostador extends Thread{
     private Set<Integer>[] carton = new HashSet[3];
     private int numero;
     private int fila;
-    private HashMap<Integer, Integer> coordenadas = new HashMap<>();
+    private HashMap<Integer, Integer> aciertosPorLinea = new HashMap<>();
     private int contador = 0;
     public HiloApostador(Lanzador lanzador) {
         //Le damos al hilo los datos correspondientes
@@ -54,19 +53,27 @@ public class HiloApostador extends Thread{
                 fila = i;
                 if(carton[i].contains(numero)){
                     contador++;
-                    System.out.println("El " + this.getName() + " tiene el número en su fila: " + (fila +1));
-                    carton[i].remove(numero);
-                    if(!coordenadas.containsKey(fila)){
-                        coordenadas.put(fila, 1);
+                    System.out.println("\nEl " + this.getName() + " tiene el número en su fila: " + (fila +1));
+                    if(!aciertosPorLinea.containsKey(fila)){
+                        aciertosPorLinea.put(fila, 1);
                     } else{
-                        int nuevoValor = coordenadas.get(fila);
-                        coordenadas.replace(fila, ++nuevoValor);
-                        System.out.println("Número de aciertos del " + this.getName() + " en la misma fila (" + (fila+1) +"): " + coordenadas.get(fila));
+                        int nuevoValor = aciertosPorLinea.get(fila);
+                        aciertosPorLinea.replace(fila, ++nuevoValor);
+                        System.out.println("Número de aciertos del " + this.getName() + " en la misma fila (" + (fila+1) +"): " + aciertosPorLinea.get(fila));
                     }
                 }
             }
-            if (coordenadas.getOrDefault(1, 0)==5 || coordenadas.getOrDefault(2, 0)==5 || coordenadas.getOrDefault(3, 0)==5){
-                System.out.println(this.getName()+ " ha hecho línea!");
+            if (aciertosPorLinea.getOrDefault(0, 0)==5){
+                System.out.println(this.getName()+ " ha completado la línea 1 de su cartón!\n");
+                aciertosPorLinea.remove(0);
+            }
+            if( aciertosPorLinea.getOrDefault(1, 0)==5) {
+                System.out.println(this.getName()+ " ha completado la línea 2 de su cartón!\n");
+                aciertosPorLinea.remove(1);
+            }
+            if ( aciertosPorLinea.getOrDefault(2, 0)==5){
+                System.out.println(this.getName()+ " ha completado la línea 3 de su cartón!\n");
+                aciertosPorLinea.remove(2);
             }
             if (contador==15){
                 System.out.println("Bingo!");
@@ -86,3 +93,4 @@ public class HiloApostador extends Thread{
         }
     }
 }
+
